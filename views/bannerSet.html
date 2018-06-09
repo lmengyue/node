@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<title></title>
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+		<link rel="stylesheet" href="/component/wangEditor/wangEditor.min.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<script src="/js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<article class="container banner-set">
+			<div class="flex">
+				<h3>首页轮播图</h3>
+				<span class="add-banner" data-target="#modal1" data-toggle="modal">&plus;添加轮播图</span>
+			</div>
+			<ul class="list-group banner-list">
+				<!--<li class="list-group-item flex">-->
+					<!--<img src="images/banner/1.jpg" alt="">-->
+					<!--<span class="del-banner">&times;</span>-->
+				<!--</li>-->
+			</ul>
+			<a href="javascript:history.back(-1)" class="btn btn-primary" style="margin-top: 50px">返回</a>
+		</article>
+		<div class="modal fade" id="modal1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4>添加轮播图</h4>
+					</div>
+					<form id="bannerForm" enctype="multipart/form-data">
+						<div class="form-group">
+
+							<label for="banner">File input</label>
+							<input type="file" name="imgFile" id="banner">
+						</div>
+					</form>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" data-target="#modal1">关闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="/js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+        $.ajax({
+            type: 'get',
+            url:'/banner',
+            data:'',
+            async:true,
+            dataType:'JSON',
+            success:function(res){
+                console.log(res);
+                var str='';
+								for(let item of res.result){
+								    console.log(item);
+                    str+='<li class="list-group-item flex">';
+                    str+='<img src="/images/banner/'+item+'" alt="">';
+                    str+='<span class="del-banner">&times;</span>';
+                    str+='</li>';
+								}
+								$('.banner-list').append(str);
+            },error:function(res){
+                console.log(res);
+            }
+        });
+		</script>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<title></title>
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+		<link rel="stylesheet" href="/component/wangEditor/wangEditor.min.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<script src="/js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="/component/wangEditor/wangEditor.min.js"></script>
+	</head>
+	<body>
+		<article class="container news">
+			<div class="form-group">
+				<label for="article-name">文章标题：</label>
+				<input type="text" class="form-control" id="article-name" placeholder="文章标题">
+			</div>
+        <div class="form-group">
+            <select name="" id="type" class="form-control">
+                <option value="新闻">新闻</option>
+                <option value="日记">日记</option>
+            </select>
+        </div>
+			<div id="editor">
+
+			</div>
+			<div class="form-group">
+				<button class="sub-news btn btn-primary">提交</button>
+				<button class="change-news btn btn-primary">修改</button>
+				<a href="javascript:history.back(-1)" class="btn btn-primary">返回</a>
+			</div>
+		</article>
+		<script src="/js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+        var E = window.wangEditor
+        var editor = new E('#editor')
+        //editor.customConfig.uploadImgShowBase64 = true;
+        editor.customConfig.uploadImgServer = '/upload_img';//上传图片到服务器文件夹
+        editor.customConfig.uploadFileName = 'imgFile';
+        editor.create();
+
+        if(GetUrl("id")){
+            $('.change-news').show();
+            $('.sub-news').hide();
+            $.ajax({
+                type: 'get',
+                url:'/news/news_detail',
+                data:{id:GetUrl("id")},
+                async:true,
+                dataType:'JSON',
+                success:function(res){
+                    console.log(res);
+                    var data=res.result;
+                    $('#article-name').val(data.name);
+                    $('#type').val(data.type);
+                    $('.news #editor .w-e-text').html(data.content);
+                },error:function(res){
+                    console.log(res);
+                }
+            });
+        }
+        function GetUrl(name) {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+		</script>
+	</body>
+</html>

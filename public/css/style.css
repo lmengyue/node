@@ -1,0 +1,92 @@
+.index-head-nav .navbar-brand {
+  padding: 7px 15px;
+}
+.index-head-nav .navbar-brand img {
+  width: 36px;
+  height: 36px;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.banner-set .add-banner {
+  font-size: 18px;
+  cursor: pointer;
+  color: green;
+}
+.banner-set .list-group img {
+  width: 120px;
+  height: 60px;
+}
+.banner-set .list-group .del-banner {
+  font-size: 24px;
+  color: #f00;
+  cursor: pointer;
+}
+#bannerForm {
+  padding: 20px;
+}
+.change-banner-a {
+  margin: 20px 0;
+}
+.change-banner-a a {
+  font-size: 18px;
+  color: #f00;
+}
+.index .list-group-item {
+  display: flex;
+  justify-content: space-between;
+  line-height: 24px;
+}
+.index .list-group-item .del {
+  display: block;
+  padding: 0 6px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #f00;
+}
+.index .list-group-item span:first-child {
+  display: inline-block;
+  width: 150px;
+}
+.change-pass {
+  cursor: pointer;
+}
+.add-news {
+  font-size: 18px;
+  cursor: pointer;
+  color: red;
+}
+#car .carousel-inner .item img {
+  margin: 0 auto;
+  width: 100%;
+  height: 340px;
+}
+.register form {
+  padding: 50px;
+}
+.register form h2 {
+  text-align: center;
+}
+.register .alert {
+  display: none;
+}
+.news {
+  padding-top: 100px;
+}
+.news .btn-primary {
+  margin-top: 20px;
+}
+.news .change-news {
+  display: none;
+}
+.news a {
+  color: #fff;
+}
+.news a:hover {
+  color: #ffffff;
+}
+.news-detail .change-news {
+  margin-top: 50px;
+}
